@@ -1,0 +1,41 @@
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+
+# Create a webdriver instance
+driver = webdriver.Firefox()
+
+# Navigate to the ticketing system login page
+driver.get("http://www.example.com/login")
+
+# Find the username and password input fields
+
+username_field = driver.find_element_by_id("username")
+# For newer selenium find_element(By.ID, "id")
+password_field = driver.find_element_by_id("password")
+
+# Enter the login credentials
+username_field.send_keys("my_username")
+password_field.send_keys("my_password")
+
+# Submit the login form
+password_field.send_keys(Keys.RETURN)
+
+# Navigate to the page for creating new tickets
+driver.get("http://www.ticketingsystem.com/new_ticket")
+
+# Find the input fields for the ticket details
+subject_field = driver.find_element_by_id("subject")
+description_field = driver.find_element_by_id("description")
+
+# Enter the ticket details
+subject_field.send_keys("Ticket subject")
+description_field.send_keys("Ticket description")
+
+# Submit the form to create the new ticket
+driver.find_element_by_id("submit_button").click()
+
+# Log out of the ticketing system
+driver.get("http://www.ticketingsystem.com/logout")
+
+# Close the webdriver instance
+driver.close()
